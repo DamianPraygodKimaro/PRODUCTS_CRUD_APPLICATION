@@ -75,6 +75,9 @@
       <!-- Edit form -->
       <div class="form-card">
         <h2 class="card-title">Update Details</h2>
+        <form action="{{route('products.update', $product_fetched_to_edit->id)}}" method="post">
+            @csrf
+            @method('PUT')
 
         <div class="field">
           <label>Product Name</label>
@@ -93,28 +96,32 @@
           </div>
           <div class="field">
             <label>Stock Quantity</label>
-            <input type="number" name="stock" value="{{ old('quantity', $product_fetched_to_edit->quantity)}}" />
+            <input type="number" name="quantity" value="{{ old('quantity', $product_fetched_to_edit->quantity)}}" />
           </div>
         </div>
 
         <div class="field">
           <label>Category</label>
           <select name="category" >
-            <option value="">{{ old('category', $product_fetched_to_edit->category)}}</option>
-            <option value="electronics">Electronics</option>
-            <option value="food">Food</option>
-            <option value="clothing">Clothing</option>
-            <option value="furniture">Furniture</option>
-            <option value="other">Other</option>
+            <option value="">Select category</option>
+            <option value="electronics" {{ old('category', $product_fetched_to_edit->category) == 'electronics' ? 'selected' : ''}}>Electronics</option>
+            <option value="food" {{ old('category', $product_fetched_to_edit->category)== 'food' ? 'selected' : ''}}>Food</option>
+            <option value="clothing" {{ old('category', $product_fetched_to_edit->category)== 'clothing' ? 'selected' : ''}}>Clothing</option>
+            <option value="furniture" {{ old('category', $product_fetched_to_edit->category)== 'furniture' ? 'selected' : ''}}>Furniture</option>
+            <option value="other" {{ old('category', $product_fetched_to_edit->category)== 'other' ? 'selected' : ''}}>Other</option>
           </select>
         </div>
 
         <div class="form-actions">
-          <a href="dashboard.html" class="btn-outline">Cancel</a>
-          <button type="submit" class="btn-primary">Save Edits</button>
+          <a href="{{route('products.index')}}" class="btn-outline">Cancel</a>
+          
+            <button type="submit" class="btn-primary">Save Edits</button>
+          
+          
         </div>
 
       </div>
+      </form>
 
       <!-- Danger zone -->
       <div class="form-card danger-card">

@@ -32,7 +32,7 @@ class ProductController extends Controller
     {
         $captured_products_details = $request->validate([
             'name' => 'required|min:3|max:40',
-            'description' => 'nullable|min:5|max:200',
+            'description' => 'nullable|max:200',
             'price' => 'required|numeric|min:0',
             'quantity' => 'required|numeric|min:0',
             'category' => 'required',
@@ -64,7 +64,21 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $captured_products_details = $request->validate([
+            'name' => 'required|min:3|max:40',
+            'description' => 'required|max:200',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|numeric|min:0',
+            'category' => 'required',
+        ]);
+
+        $product_fetched_to_edit = Product::FindorFail($id);
+
+        $product_fetched_to_edit->update($captured_products_details);
+
+        return redirect()->route('products.index')->with('success','Product updated successfully');
+
+
     }
 
     /**

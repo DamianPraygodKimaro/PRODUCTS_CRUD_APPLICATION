@@ -86,6 +86,10 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $fetch_product_to_be_deleted = Product::FindorFail($id);
+        $fetch_product_to_be_deleted->delete();
+
+        return redirect()->route('products.index')->with('success' , 'Product deleted successfully');
+
     }
 }

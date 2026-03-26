@@ -127,7 +127,12 @@
       <div class="form-card danger-card">
         <h2 class="card-title danger-title">Danger Zone</h2>
         <p class="danger-text">Deleting this product is permanent and cannot be undone.</p>
-        <a href="#" class="btn-danger">Delete This Product</a>
+        <form action="{{route('products.destroy' , $product_fetched_to_edit->id)}}" method="post">
+          @csrf 
+          @method('DELETE')
+          <button type="submit" class="btn-danger">Delete This Product</button>
+        </form>
+        
       </div>
 
     </div>

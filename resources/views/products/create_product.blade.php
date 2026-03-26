@@ -44,7 +44,18 @@
         <h2 class="card-title">Product Information</h2>
          <form action="{{route('products.store')}}" method="post">
     @csrf
+      @if($errors->any())
+    @foreach($errors->all() as $error)
 
+  <div class="flash-error">
+        <span class="flash-icon">✕ </span>
+        {{$error}}
+    </div>
+  
+  @endforeach
+    @endif
+
+ 
         <div class="field">
           <label>Product Name</label>
           <input type="text" name="name" placeholder="e.g. Samsung TV 55 inch" />

@@ -58,36 +58,36 @@
  
         <div class="field">
           <label>Product Name</label>
-          <input type="text" name="name" placeholder="e.g. Samsung TV 55 inch" />
+          <input type="text" name="name" placeholder="e.g. Samsung TV 55 inch" value="{{old('name')}}" />
         </div>
 
         <div class="field">
           <label>Description</label>
-          <textarea name="description" rows="5" placeholder="Describe the product..."></textarea>
+          <textarea name="description" rows="5" placeholder="Describe the product...">{{old('description')}}</textarea>
         </div>
 
         <div class="field-row">
           <div class="field">
             <label>Price (TSh)</label>
-            <input type="number" name="price" placeholder="e.g. 1200000" />
+            <input type="number" name="price" placeholder="e.g. 1200000" value="{{old('price')}} />
           </div>
           <div class="field">
             <label>Stock Quantity</label>
-            <input type="number" name="quantity" placeholder="e.g. 50" />
+            <input type="number" name="quantity" placeholder="e.g. 50"  value="{{old('quantity')}}/>
           </div>
         </div>
 
         <div class="field">
           <label>Category</label>
-          <select name="category">
-            <option value="">Select category</option>
-            <option value="electronics">Electronics</option>
-            <option value="food">Food</option>
-            <option value="clothing">Clothing</option>
-            <option value="furniture">Furniture</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
+         <select name="category">
+    <option value="">Select category</option>
+    <option value="electronics" {{ old('category') == 'electronics' ? 'selected' : '' }}>Electronics</option>
+    <option value="food" {{ old('category') == 'food' ? 'selected' : '' }}>Food</option>
+    <option value="clothing" {{ old('category') == 'clothing' ? 'selected' : '' }}>Clothing</option>
+    <option value="furniture" {{ old('category') == 'furniture' ? 'selected' : '' }}>Furniture</option>
+    <option value="other" {{ old('category') == 'other' ? 'selected' : '' }}>Other</option>
+</select>
+</div>
 
         <div class="field">
           <label>Product Image</label>
